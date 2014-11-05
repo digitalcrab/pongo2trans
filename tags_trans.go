@@ -1,17 +1,17 @@
 package pongo2trans
 
 import (
-	"github.com/flosch/pongo2"
 	"bytes"
+	pongo2 "gopkg.in/flosch/pongo2.v3"
 )
 
 type tagTransNode struct {
-	translator		ITranslator
-	asName			string
-	valueExpression	pongo2.IEvaluator
+	translator      ITranslator
+	asName          string
+	valueExpression pongo2.IEvaluator
 }
 
-func (self *tagTransNode) Execute(ctx *pongo2.ExecutionContext, buffer *bytes.Buffer) error {
+func (self *tagTransNode) Execute(ctx *pongo2.ExecutionContext, buffer *bytes.Buffer) *pongo2.Error {
 	// Execute expression
 	value, err := self.valueExpression.Evaluate(ctx)
 	if err != nil {
@@ -38,7 +38,7 @@ func (self *tagTransNode) Execute(ctx *pongo2.ExecutionContext, buffer *bytes.Bu
 	return nil
 }
 
-func tagTransParser(doc *pongo2.Parser, start *pongo2.Token, arguments *pongo2.Parser) (pongo2.INodeTag, error) {
+func tagTransParser(doc *pongo2.Parser, start *pongo2.Token, arguments *pongo2.Parser) (pongo2.INodeTag, *pongo2.Error) {
 	node := &tagTransNode{
 		translator: translator,
 	}

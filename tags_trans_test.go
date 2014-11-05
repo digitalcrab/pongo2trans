@@ -1,7 +1,7 @@
 package pongo2trans
 
 import (
-	"github.com/flosch/pongo2"
+	pongo2 "gopkg.in/flosch/pongo2.v3"
 	"testing"
 )
 
@@ -9,9 +9,9 @@ func TestTransNoArgsNoTranslator(t *testing.T) {
 	resetTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	expected := "This is the title"
@@ -31,9 +31,9 @@ func TestTransNoArgs(t *testing.T) {
 	registerTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	expected := "Это заголовок"
@@ -48,15 +48,14 @@ func TestTransNoArgs(t *testing.T) {
 	}
 }
 
-
 func TestTransNoTranslation(t *testing.T) {
 	resetTrans()
 	registerTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	expected := "end point"
@@ -76,9 +75,9 @@ func TestTransVar(t *testing.T) {
 	registerTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	ctx := pongo2.Context{
@@ -102,9 +101,9 @@ func TestTransAsVar(t *testing.T) {
 	registerTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	expected := "<title>Это заголовок</title>"
@@ -124,9 +123,9 @@ func TestTransAsVarBlock(t *testing.T) {
 	registerTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	expected := "Это заголовок"

@@ -1,7 +1,7 @@
 package pongo2trans
 
 import (
-	"github.com/flosch/pongo2"
+	pongo2 "gopkg.in/flosch/pongo2.v3"
 	"testing"
 )
 
@@ -9,9 +9,9 @@ func TestTransBlockNoArgsNoTranslator(t *testing.T) {
 	resetTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	expected := "This string will have value inside."
@@ -31,9 +31,9 @@ func TestTransBlockNoArgs(t *testing.T) {
 	registerTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	expected := "Это заголовок"
@@ -53,9 +53,9 @@ func TestTransBlockVar(t *testing.T) {
 	registerTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	ctx := pongo2.Context{
@@ -79,9 +79,9 @@ func TestTransBlockWith(t *testing.T) {
 	registerTrans()
 
 	var (
-		tpl	*pongo2.Template
-		err	error
-		res	string
+		tpl *pongo2.Template
+		err error
+		res string
 	)
 
 	expected := "Переведи меня: Я перевод"

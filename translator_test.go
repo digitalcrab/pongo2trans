@@ -1,16 +1,16 @@
 package pongo2trans
 
 import (
-	"testing"
-	"strings"
 	"fmt"
+	"strings"
+	"testing"
 )
 
 type testTranslator struct {
-	data	map[string]string
+	data map[string]string
 }
 
-func (self *testTranslator) Translate(in string, args map[string]interface {}) (string, bool) {
+func (self *testTranslator) Translate(in string, args map[string]interface{}) (string, bool) {
 	res, ok := self.data[in]
 	if !ok {
 		return in, false

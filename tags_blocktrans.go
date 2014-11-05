@@ -1,17 +1,17 @@
 package pongo2trans
 
 import (
-	"github.com/flosch/pongo2"
 	"bytes"
+	pongo2 "gopkg.in/flosch/pongo2.v3"
 )
 
 type tagBlockTransNode struct {
-	translator	ITranslator
-	wrapper		*pongo2.NodeWrapper
-	withPairs	map[string]pongo2.IEvaluator
+	translator ITranslator
+	wrapper    *pongo2.NodeWrapper
+	withPairs  map[string]pongo2.IEvaluator
 }
 
-func (self *tagBlockTransNode) Execute(ctx *pongo2.ExecutionContext, buffer *bytes.Buffer) error {
+func (self *tagBlockTransNode) Execute(ctx *pongo2.ExecutionContext, buffer *bytes.Buffer) *pongo2.Error {
 	buf := bytes.NewBuffer([]byte{})
 	if err := self.wrapper.Execute(ctx, buf); err != nil {
 		return err
@@ -22,7 +22,7 @@ func (self *tagBlockTransNode) Execute(ctx *pongo2.ExecutionContext, buffer *byt
 
 	// Then we will try to translate it
 	if self.translator != nil {
-		args := make(map[string]interface {})
+		args := make(map[string]interface{})
 
 		// Put all custom with-pairs into the map
 		for key, value := range self.withPairs {
@@ -56,10 +56,10 @@ func (self *tagBlockTransNode) Execute(ctx *pongo2.ExecutionContext, buffer *byt
 	return nil
 }
 
-func tagBlockTransParser(doc *pongo2.Parser, start *pongo2.Token, arguments *pongo2.Parser) (pongo2.INodeTag, error) {
+func tagBlockTransParser(doc *pongo2.Parser, start *pongo2.Token, arguments *pongo2.Parser) (pongo2.INodeTag, *pongo2.Error) {
 	node := &tagBlockTransNode{
-		translator:	translator,
-		withPairs:	make(map[string]pongo2.IEvaluator),
+		translator: translator,
+		withPairs:  make(map[string]pongo2.IEvaluator),
 	}
 
 	// Wrap till the end
